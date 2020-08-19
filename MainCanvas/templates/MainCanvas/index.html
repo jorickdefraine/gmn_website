@@ -1,0 +1,84 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="{% static 'MainCanvas/javascript/draw.js' %}" ></script>
+        <link rel="icon" type="image/png" href="{% static 'MainCanvas/images/MNIST_5.png' %}" />
+        <title>GMN by Jorick Defraine</title>
+    </head>
+    <body style="background-size: auto auto; background-color: lightgray">
+
+      <div id="withoutCanvas">
+        <nav class="navbar navbar-expand-lg navbar-warning bg-dark">
+            <a class="navbar-brand" style="color:white" href="{% url 'index' %}"><strong>Guess My Number</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <!--
+                <li class="nav-item active">
+                    <a class="nav-link" style="color:#ffffff" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                    -->
+                <li class="nav-item">
+                    <!--<button id="saveDrawingNavbar" class="btn btn-outline-warning my-2 my-sm-0" type="button" >Predict</button>
+                 --><div id="buttonBar"></div>
+                </li>
+
+                <li>
+                    {% if message %}
+                        <div style="text-align:center;margin:0 auto;"class="btn btn-dark active mx-1 my-sm-0">
+                        {{ message }}
+                        </div>
+                    {% endif %}
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" style="margin:auto; color:white">Tip: Draw slowly to get better results.</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+
+
+      <form id="saveDrawing" action="{% url 'predictDrawing' %}" method="post" hidden onsubmit="return submitDrawing()">
+        {% csrf_token %}
+        <input id="JSONData" type="text" name="JSONData"/>
+        <button id="save" type="submit" class="btn btn-warning btn-lg" ></button>
+      </form>
+
+
+    </div>
+
+      <div id="withCanvas" style="margin:auto; width:280px; height:280px">
+        <svg id="canvas" style="margin:auto; width:280px;height:280px;background:rgba(255,255,255,1)"></svg>
+      </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <!-- Load our React component. -->
+        <script src="{% static 'MainCanvas/javascript/reactComponents.js' %}" type="text/babel"></script>
+    </body>
+</html>
