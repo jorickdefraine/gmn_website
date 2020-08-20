@@ -1,6 +1,8 @@
 # Text backup files
 *.bak
-
+#pycharm
+*.idea
+/.idea
 # Database
 *.sqlite3
 
