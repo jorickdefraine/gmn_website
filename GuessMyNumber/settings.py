@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '%7^b^7(%a9uah2@h9%%e8uyc@si1uc
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['limitless-badlands-05393.herokuapp.com','127.0.0.1']
 
 
 # Application definition
