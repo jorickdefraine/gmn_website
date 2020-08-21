@@ -6,7 +6,6 @@ from django.urls import reverse
 from .models import Drawing
 import json
 import numpy as np
-import matplotlib.pyplot as plt
 from .gmnV0 import *
 
 
